@@ -1,0 +1,73 @@
+Task: T-03 Code-Level Capability Audit
+Result: PASS
+
+## Official Repository preflight
+
+Working directory: `D:\GitHub\LingoLens`
+Branch: `docs/code-capability-audit`
+HEAD: `84519199502219ead4186e876eb52fb13abe6708`
+Initial status: `## docs/code-capability-audit`
+Status stdout after branch creation: empty
+
+## Frozen source metadata
+
+### `D:\GitHub\temp\Prototype`
+
+Command: `git remote -v; git branch --show-current; git rev-parse HEAD; git status --short --untracked-files=all; git ls-tree --name-only HEAD`
+Remote stdout:
+```text
+origin https://github.com/j-neyrox/LingoLens (fetch)
+origin https://github.com/j-neyrox/LingoLens (push)
+```
+Branch: `main`
+HEAD: `40e8d70e8e9bf336a2f66cf811736061831c2964`
+Status stdout: empty
+Top-level inventory: `.github`, `.gitignore`, `.vscode`, `AGENTS.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `docs`, `LingoLens`, `LingoLens.xcodeproj`, `LingoLensTests`, `LingoLensUITests`, `QUICK_START.md`, `README.md`, `SECURITY.md`
+Application type: Swift/macOS Xcode project
+
+### `D:\GitHub\temp\Merged Model 1`
+
+Remote stdout:
+```text
+origin https://github.com/Jojo3783/MVP-flutter-LingoLens (fetch)
+origin https://github.com/Jojo3783/MVP-flutter-LingoLens (push)
+```
+Branch: `main`
+HEAD: `76a3826ce69827456b7c305018b629f1c22f4bd6`
+Status stdout: empty
+Top-level inventory: `ChromeExtension`, `FlutterVersion`
+Application root: `FlutterVersion`
+Manifest files: `FlutterVersion/pubspec.yaml`, `FlutterVersion/pubspec.lock`
+
+### `D:\GitHub\temp\Merged Model 2`
+
+Remote stdout:
+```text
+origin https://github.com/FUNDAI/Lingolens_flutter_test (fetch)
+origin https://github.com/FUNDAI/Lingolens_flutter_test (push)
+```
+Branch: `main`
+HEAD: `df4f5424e8abfedc52f941c8c5c2f1a9463e8aac`
+Status stdout: empty
+Top-level inventory: `.gitignore`, `.metadata`, `analysis_options.yaml`, `android`, `ios`, `lib`, `macos`, `pubspec.lock`, `pubspec.yaml`, `README.md`, `test`, `windows`
+Application root: repository root
+
+## Disposable clone equality
+
+| Clone | Clone HEAD | Source HEAD | Equality |
+|---|---|---|---|
+| `D:\GitHub\workspace\lingolens-audit\prototype` | `40e8d70e8e9bf336a2f66cf811736061831c2964` | `40e8d70e8e9bf336a2f66cf811736061831c2964` | PASS |
+| `D:\GitHub\workspace\lingolens-audit\merged-model-1` | `76a3826ce69827456b7c305018b629f1c22f4bd6` | `76a3826ce69827456b7c305018b629f1c22f4bd6` | PASS |
+| `D:\GitHub\workspace\lingolens-audit\merged-model-2` | `df4f5424e8abfedc52f941c8c5c2f1a9463e8aac` | `df4f5424e8abfedc52f941c8c5c2f1a9463e8aac` | PASS |
+
+Source Repository status remained clean. Disposable clones contain only audit/build-generated state: Merged Model 1 and Merged Model 2 have regenerated tracked Flutter plugin registrant files; all three have Codebase Memory `.codebase-memory/` artifacts. These are outside the official Repository and were not copied back.
+
+## Codebase Memory indexing
+
+| Project | Mode | Nodes | Edges | Exclusions |
+|---|---|---:|---:|---|
+| `D-GitHub-workspace-lingolens-audit-prototype` | `full` | 1020 | 2525 | `.git`, `.vscode` |
+| `D-GitHub-workspace-lingolens-audit-merged-model-1` | `full` | 4163 | 11580 | `.git`, `.dart_tool`, `build` |
+| `D-GitHub-workspace-lingolens-audit-merged-model-2` | `full` | 661 | 1698 | `.git`, `.dart_tool`, `build`, platform ephemeral folders |
+
+Indexing was performed only in disposable clones. No official Repository or source Repository was modified.

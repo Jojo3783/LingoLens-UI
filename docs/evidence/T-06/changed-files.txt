@@ -1,0 +1,34 @@
+# T-06 Changed-file and Scope Audit
+
+## Expected implementation and test files
+
+- `lib/domain/analysis_models.dart`
+- `lib/application/analysis_controller.dart`
+- `test/domain/analysis_models_test.dart`
+- `test/application/analysis_input_boundary_test.dart`
+- `test/application/error_contract_test.dart`
+
+## Governance and evidence files
+
+- `AGENTS.md`
+- `agent_tasks.md`
+- `handoff.md`
+- `docs/ACCEPTANCE_CRITERIA.md`
+- `docs/evidence/T-06/`
+
+## Explicitly unchanged
+
+- `docs/archive/handoffs/project-handoff-v1.1-43f77552.md`
+- `pubspec.yaml`、`pubspec.lock`
+- Windows／macOS native implementation
+- Real provider adapters
+- Durable persistence、schema、migration
+- T-07 and later implementation
+
+## Scope audit
+
+- New dependency：無
+- Platform/native implementation：無
+- Real CLI／HTTP／hosted provider：無
+- Raw user text or provider payload in evidence：無；測試 payload 為 synthetic only
+- Donor source modification：無

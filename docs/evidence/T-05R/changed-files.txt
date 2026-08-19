@@ -1,0 +1,33 @@
+# T-05R Changed Files
+
+## Governance and Handoff
+
+- `AGENTS.md`
+- `agent_tasks.md`
+- `docs/ARCHITECTURE.md`
+- `docs/quality/T-04_RISK_REGISTER.md`
+- `handoff.md`
+
+## Domain, Application, Infrastructure
+
+- `lib/domain/persistence_contracts.dart`
+- `lib/application/persistence_controller.dart`
+- `lib/infrastructure/in_memory_persistence.dart`
+
+## Tests
+
+- `test/application/analysis_controller_test.dart`
+- `test/application/persistence_controller_test.dart`
+
+## Evidence
+
+- `docs/evidence/T-05R/preflight.md`
+- `docs/evidence/T-05R/implementation-summary.md`
+- `docs/evidence/T-05R/contract-test-results.md`
+- `docs/evidence/T-05R/verification-results.md`
+- `docs/evidence/T-05R/build-results.md`
+- `docs/evidence/T-05R/changed-files.txt`
+- `docs/evidence/T-05R/git-delivery.md`
+- `docs/evidence/T-05R/limitations.md`
+
+Authoritative final receipt：`git diff --name-status b721aa68885bb659feee9fba766a683de417620d...HEAD -- .`。本檔為可讀性摘要，完整 path-level output 以該 command 為準。

@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# SQLite Databases (Local Data)
+*.db
+lingolens.db
+
+# Security, Master Keys & Secrets
+*.key
+.lingolens_secret.key
+test_secret.key
+
+# Local Settings & Temporary Files
+settings.json
+settings.json.tmp
+
+# IDE & Editor local states (backend-specific)
+.idea/
+.vscode/
+*.swp

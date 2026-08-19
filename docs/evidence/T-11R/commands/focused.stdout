@@ -1,0 +1,27 @@
+Resolving dependencies...
+Downloading packages...
+  matcher 0.12.19 (0.12.20 available)
+  meta 1.17.0 (1.19.0 available)
+  test_api 0.7.10 (0.7.13 available)
+  vector_math 2.2.0 (2.4.1 available)
+Got dependencies!
+4 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart
+00:00 +0: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport cancellation before request establishment closes client and sends no body
+00:00 +1: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport cancellation after request establishment aborts request before body write
+00:00 +2: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport cancellation wins a transport exception race
+00:00 +3: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport response body limit accepts exact limit and rejects limit plus one byte
+00:00 +4: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport connect and body stages share one overall deadline
+00:00 +5: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider default composition stays Fake and makes no HTTP request
+00:00 +6: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider missing configuration fails before transport invocation
+00:00 +7: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider missing credential fails before transport invocation
+00:00 +8: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider builds exact Responses API request and decodes typed result
+00:00 +9: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider records exact transport latency boundaries and successful event ordering
+00:00 +10: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider invalid schema emits one failure terminal outcome and no provider completion
+00:00 +11: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider maps refusal, incomplete, malformed, empty, and unexpected output
+00:00 +12: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider maps authentication, rate limit, and server failures
+00:00 +13: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider propagates cancellation to transport exactly once
+00:00 +14: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider telemetry sink failure cannot change successful outcome
+00:00 +15: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_provider_disclosure_test.dart: remote provider disclosure is visible without a picker
+00:01 +16: All tests passed!

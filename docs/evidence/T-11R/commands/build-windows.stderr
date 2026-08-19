@@ -1,0 +1,4 @@
+
+Oops; flutter has exited unexpectedly: "ProcessException: Failed to find "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" in the search path.
+  Command: C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe ".
+A crash report has been written to D:\GitHub\workspace\lingolens-t11r-verify-RmAKDD\flutter_02.log

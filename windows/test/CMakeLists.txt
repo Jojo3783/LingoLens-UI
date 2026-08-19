@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.14)
+project(lingolens_native_platform_harness LANGUAGES CXX)
+
+add_executable(lingolens_native_platform_harness
+  native_platform_primitives_harness.cpp
+)
+
+target_compile_features(lingolens_native_platform_harness PRIVATE cxx_std_17)
+target_compile_definitions(lingolens_native_platform_harness PRIVATE NOMINMAX)

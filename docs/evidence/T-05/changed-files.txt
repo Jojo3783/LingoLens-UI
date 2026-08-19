@@ -1,0 +1,33 @@
+# T-05 Changed Files
+
+Authoritative command：`git diff --name-status main...HEAD -- .`
+
+## Governance and Evidence
+
+- `.metadata`
+- `analysis_options.yaml`
+- `docs/ARCHITECTURE.md`
+- `docs/decisions/ADR-001-base-repository-strategy.md`
+- `docs/decisions/ADR-002-state-management.md`
+- `docs/decisions/ADR-003-persistence-boundary.md`
+- `docs/decisions/ADR-004-provider-boundary.md`
+- `docs/decisions/ADR-005-progressive-results.md`
+- `docs/decisions/ADR-006-concurrency-and-cancellation.md`
+- `docs/decisions/ADR-007-platform-boundary.md`
+- `docs/quality/T-04_RISK_REGISTER.md`
+- `handoff.md`
+
+## Application and Tests
+
+- `lib/`
+- `pubspec.yaml`
+- `pubspec.lock`
+- `test/`
+- `lingolens.iml`
+
+## Generated Desktop Skeleton
+
+- `windows/`
+- `macos/`
+
+This grouped listing is a readability summary. The exact path-level receipt remains the Git command output and the committed branch diff.

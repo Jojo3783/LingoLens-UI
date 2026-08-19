@@ -1,0 +1,51 @@
+Task: T-02 Disposable Source Baseline
+
+===== D:\GitHub\temp\Prototype =====
+Exists: True
+Remote: origin https://github.com/j-neyrox/LingoLens
+Branch: main
+HEAD: 40e8d70e8e9bf336a2f66cf811736061831c2964
+Latest commit: 40e8d70 Fix favorites and history views (#2)
+Working Tree: clean; `git status --short` empty
+Tracked files: 92
+Top-level inventory: .git, .github, .vscode, docs, LingoLens, LingoLens.xcodeproj, LingoLensTests, LingoLensUITests, .gitignore, AGENTS.md, CHANGELOG.md, CONTRIBUTING.md, QUICK_START.md, README.md, SECURITY.md
+Framework/project type: Swift/macOS Xcode project
+Manifest files: none; Xcode project `LingoLens.xcodeproj`
+License: no standard License file found
+
+===== D:\GitHub\temp\Merged Model 1 =====
+Exists: True
+Remote: origin https://github.com/Jojo3783/MVP-flutter-LingoLens
+Branch: main
+HEAD: 76a3826ce69827456b7c305018b629f1c22f4bd6
+Latest commit: 76a3826 MVP flutter code
+Working Tree: clean; `git status --short` empty
+Tracked files: 71
+Top-level inventory: .git, ChromeExtension, FlutterVersion
+Framework/project type: Flutter application
+Application root: `D:\GitHub\temp\Merged Model 1\FlutterVersion`
+Manifest files: FlutterVersion/pubspec.yaml, FlutterVersion/pubspec.lock, FlutterVersion/analysis_options.yaml
+License: no standard License file found
+Scripts: FlutterVersion/debug_windows.ps1
+
+===== D:\GitHub\temp\Merged Model 2 =====
+Exists: True
+Remote: origin https://github.com/FUNDAI/Lingolens_flutter_test
+Branch: main
+HEAD: df4f5424e8abfedc52f941c8c5c2f1a9463e8aac
+Latest commit: df4f542 Enhance README with Codex CLI setup and project steps
+Working Tree: clean; `git status --short` empty
+Tracked files: 153
+Top-level inventory: .git, android, ios, lib, macos, test, windows, .gitignore, .metadata, analysis_options.yaml, pubspec.lock, pubspec.yaml, README.md
+Framework/project type: Flutter application
+Application root: `D:\GitHub\temp\Merged Model 2`
+Manifest files: pubspec.yaml, pubspec.lock, analysis_options.yaml
+License: no standard License file found
+
+===== clone mapping =====
+D:\GitHub\temp\Prototype -> D:\GitHub\workspace\lingolens-audit\prototype -> 40e8d70e8e9bf336a2f66cf811736061831c2964
+D:\GitHub\temp\Merged Model 1 -> D:\GitHub\workspace\lingolens-audit\merged-model-1 -> 76a3826ce69827456b7c305018b629f1c22f4bd6
+D:\GitHub\temp\Merged Model 2 -> D:\GitHub\workspace\lingolens-audit\merged-model-2 -> df4f5424e8abfedc52f941c8c5c2f1a9463e8aac
+
+Clone HEAD equality: PASS for all three sources.
+Source status after baseline: clean for all three sources.

@@ -1,0 +1,60 @@
+Task: T-02 Disposable Source Baseline
+Working directory: D:\GitHub\LingoLens for host metadata; Disposable Clone directories for Flutter commands
+Timestamp: 2026-07-26T23:52:21.8553731+08:00
+Time zone: Taipei Standard Time
+Shell: Git Bash via mcp__git_bash__run
+
+===== git --version =====
+Command: git --version
+Exit code: 0
+stdout:
+git version 2.53.0.windows.1
+stderr: empty
+
+===== flutter --version =====
+Command: flutter --version
+Exit code: 0
+stdout:
+Flutter 3.41.5 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 2c9eb20739 (4 months ago) • 2026-03-17 16:14:01 -0700
+Engine • hash c1db59d880ca73dd86cec08a6663f287522d9f39 (revision 052f31d115) (4 months ago) • 2026-03-17 20:29:11.000Z
+Tools • Dart 3.11.3 • DevTools 2.54.2
+stderr: empty
+
+===== dart --version =====
+Command: dart --version
+Exit code: 0
+stdout: empty
+stderr:
+Dart SDK version: 3.11.3 (stable) (Tue Mar 17 01:06:16 2026 -0700) on "windows_x64"
+
+===== where commands =====
+Command: where.exe git
+Exit code: 0
+stdout:
+C:\Program Files\Git\mingw64\bin\git.exe
+C:\Program Files\Git\cmd\git.exe
+C:\Users\luke2\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd\git.exe
+stderr: empty
+
+Command: where.exe flutter
+Exit code: 0
+stdout:
+C:\Users\luke2\flutter\bin\flutter
+C:\Users\luke2\flutter\bin\flutter.bat
+stderr: empty
+
+Command: where.exe dart
+Exit code: 0
+stdout:
+C:\Users\luke2\flutter\bin\dart
+C:\Users\luke2\flutter\bin\dart.bat
+stderr: empty
+
+===== host metadata =====
+Operating System: Microsoft Windows NT 10.0.26200.0
+Flutter channel: stable
+Flutter SDK path: C:\Users\luke2\flutter\bin\flutter.bat
+Dart SDK path: C:\Users\luke2\flutter\bin\dart.bat
+
+Limitations: `flutter doctor` output is preserved in the build command evidence where Flutter reported the Visual Studio and Windows SDK state. No macOS/Xcode environment was available on this host.

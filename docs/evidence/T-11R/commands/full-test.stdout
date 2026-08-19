@@ -1,0 +1,134 @@
+Resolving dependencies...
+Downloading packages...
+  matcher 0.12.19 (0.12.20 available)
+  meta 1.17.0 (1.19.0 available)
+  test_api 0.7.10 (0.7.13 available)
+  vector_math 2.2.0 (2.4.1 available)
+Got dependencies!
+4 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart
+00:00 +0: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: Fake Provider success is deterministic and typed
+00:00 +1: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: Fake Provider failure remains a typed failure
+00:00 +2: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: delayed Fake Provider observes cancellation
+00:00 +3: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: user cancellation remains cancelled after a late success
+00:00 +4: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: latest request wins and stale result cannot overwrite current state
+00:00 +5: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: stale failure cannot overwrite a newer successful request
+00:00 +6: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: unexpected provider exception becomes sanitized unknown error
+00:00 +7: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: retry creates a new RequestId
+00:00 +8: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: empty input becomes typed failure without calling provider
+00:00 +9: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_controller_test.dart: disposing the controller suppresses a late fake completion
+00:00 +10: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_execution_strategy_test.dart: two-stage strategy emits preview before full success
+00:00 +11: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_execution_strategy_test.dart: full-only strategy never calls optional preview capability
+00:00 +12: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_execution_strategy_test.dart: preview failure is typed and full success remains usable
+00:00 +13: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_execution_strategy_test.dart: full failure after preview preserves partial result and typed error
+00:00 +14: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_execution_strategy_test.dart: cancel during preview and full preserves cancellation boundary
+00:00 +15: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_execution_strategy_test.dart: new request supersedes stale preview and full completions
+00:00 +16: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_execution_strategy_test.dart: retry creates a new request context after partial failure
+00:00 +17: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_execution_strategy_test.dart: dispose cancels in-flight work without emitting post-dispose state
+00:00 +18: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_input_boundary_test.dart: empty input is rejected before provider invocation
+00:00 +19: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_input_boundary_test.dart: whitespace-only input is rejected after trimming
+00:00 +20: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_input_boundary_test.dart: one-character input is accepted after normalization
+00:00 +21: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_input_boundary_test.dart: exactly 2,000 Unicode scalar values are accepted
+00:00 +22: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_input_boundary_test.dart: 2,001 Unicode scalar values are rejected before provider invocation
+00:00 +23: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/analysis_input_boundary_test.dart: supplementary-plane emoji count as one Unicode scalar value
+00:00 +24: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/error_contract_test.dart: known provider timeout maps to PROVIDER_TIMEOUT
+00:00 +25: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/error_contract_test.dart: missing provider maps to PROVIDER_NOT_FOUND
+00:00 +26: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/error_contract_test.dart: provider failure remains PROVIDER_FAILED
+00:00 +27: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/error_contract_test.dart: structured-output failure maps to INVALID_STRUCTURED_OUTPUT
+00:00 +28: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/error_contract_test.dart: unexpected exception maps to sanitized UNKNOWN_ERROR
+00:00 +29: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/error_contract_test.dart: raw exception text does not reach visible failure state
+00:00 +30: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/mode_selection_test.dart: suggestion and manual override remain Application-owned
+00:00 +31: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/mode_selection_test.dart: submit mode and retry preserve immutable mode snapshots
+00:00 +32: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/mode_selection_test.dart: mode selection is disabled while a request is loading
+00:00 +33: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: persistence areas remain logically isolated
+00:00 +34: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: deleting history does not implicitly clear cache
+00:00 +35: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: disabled history writes prevent new history records
+00:00 +36: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: default visible history limit counts favorites
+00:00 +37: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: zero visible history limit returns no records without eviction
+00:00 +38: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: favorites exceeding the limit remain stored and are ordered
+00:00 +39: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: no favorites returns the newest records in deterministic order
+00:00 +40: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: mixed records use favorite-first and deterministic group ordering
+00:00 +41: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: negative visible history limit throws without mutation
+00:00 +42: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: feedback content is attached only with explicit consent
+00:00 +43: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw settings read failure maps to PERSISTENCE_FAILED
+00:00 +44: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw history save failure maps to PERSISTENCE_FAILED
+00:00 +45: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw settings write failure maps to PERSISTENCE_FAILED
+00:00 +46: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw history list failure maps to PERSISTENCE_FAILED
+00:00 +47: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw favorite list failure maps to PERSISTENCE_FAILED
+00:00 +48: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw history delete failure maps to PERSISTENCE_FAILED
+00:00 +49: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw cache clear failure maps to PERSISTENCE_FAILED
+00:00 +50: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw cache write failure maps to PERSISTENCE_FAILED
+00:00 +51: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw cache read failure maps to PERSISTENCE_FAILED
+00:00 +52: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/persistence_controller_test.dart: raw favorite save failure maps to PERSISTENCE_FAILED
+00:00 +53: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: mode-specific Copy and Fake Listen use the primary output
+00:00 +54: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: mode-specific Copy and Fake Listen use the primary output
+00:00 +55: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: mode-specific Copy and Fake Listen use the primary output
+00:00 +56: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: mode-specific Copy and Fake Listen use the primary output
+00:00 +57: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: mode-specific Copy and Fake Listen use the primary output
+00:00 +58: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: mode-specific Copy and Fake Listen use the primary output
+00:00 +59: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: Save is explicit, idempotent, and Favorite requires Save
+00:00 +60: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: disabled History writes produce a truthful failure and no record
+00:00 +61: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: Feedback stores one immutable, consent-scoped snapshot
+00:00 +62: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: stale action completion cannot replace a newer request state
+00:00 +63: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: same-request older Copy cannot replace newer Listen success
+00:00 +64: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: same-request older Copy failure cannot replace newer success
+00:00 +65: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: late Feedback success cannot clear newer RequestId ownership
+00:00 +66: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/result_action_controller_test.dart: late Feedback failure cannot clear newer RequestId ownership
+00:01 +67: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/t10_strategy_late_completion_test.dart: T-10 late completion closure late Preview success after request B cannot overwrite B
+00:01 +68: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/t10_strategy_late_completion_test.dart: T-10 late completion closure late Preview failure after request B cannot overwrite B
+00:01 +69: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/application/t10_strategy_late_completion_test.dart: T-10 late completion closure late Full success after request B cannot overwrite B
+00:01 +70: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/architecture/domain_dependency_test.dart: Domain remains free of Flutter and Riverpod dependencies
+00:01 +71: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract deserializes a valid version-3 object
+00:01 +72: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract round trips object through deterministic JSON text
+00:01 +73: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract preserves distinct typed Reading and Expression values
+00:01 +74: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract preserves valid strings after trimmed-value validation
+00:01 +75: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract rejects invalid JSON syntax as invalid structured output
+00:01 +76: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract rejects a missing required top-level field
+00:01 +77: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract rejects a missing required nested field
+00:01 +78: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract rejects a missing Expression field
+00:01 +79: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract rejects null and incorrectly typed fields
+00:01 +80: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract rejects unexpected top-level and nested fields
+00:01 +81: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract rejects unsupported schema versions
+00:01 +82: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract rejects empty and whitespace-only required output
+00:01 +83: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: AnalysisResult JSON contract does not expose parser details or raw payload
+00:01 +84: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: Analysis error contract every required error has an explicit wire value and message
+00:01 +85: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/domain/analysis_models_test.dart: Analysis error contract all required wire values are unique
+00:01 +86: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/fake_analysis_provider_test.dart: Fake Provider emits deterministic, distinct Reading and Expression v3 fields
+00:01 +87: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport cancellation before request establishment closes client and sends no body
+00:01 +88: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport cancellation after request establishment aborts request before body write
+00:01 +89: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport cancellation wins a transport exception race
+00:01 +90: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport response body limit accepts exact limit and rejects limit plus one byte
+00:01 +91: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/http_client_analysis_transport_test.dart: HttpClientAnalysisHttpTransport connect and body stages share one overall deadline
+00:01 +92: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider default composition stays Fake and makes no HTTP request
+00:01 +93: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider missing configuration fails before transport invocation
+00:01 +94: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider missing credential fails before transport invocation
+00:01 +95: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider builds exact Responses API request and decodes typed result
+00:01 +96: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider records exact transport latency boundaries and successful event ordering
+00:01 +97: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider invalid schema emits one failure terminal outcome and no provider completion
+00:01 +98: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider maps refusal, incomplete, malformed, empty, and unexpected output
+00:01 +99: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider maps authentication, rate limit, and server failures
+00:01 +100: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider propagates cancellation to transport exactly once
+00:01 +101: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/infrastructure/openai_responses_analysis_provider_test.dart: OpenAiResponsesAnalysisProvider telemetry sink failure cannot change successful outcome
+00:02 +102: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_progressive_results_test.dart: Reading Preview uses Translation identity and no Full actions
+00:03 +103: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_progressive_results_test.dart: Reading Preview uses Translation identity and no Full actions
+00:03 +104: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Reading hierarchy places quick actions after Translation
+00:03 +105: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Reading hierarchy places quick actions after Translation
+00:03 +106: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_test.dart: 提交後顯示 typed Fake Provider result
+00:03 +107: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Reading Copy and Fake Listen use Translation
+00:03 +108: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_test.dart: loading 可取消並顯示 cancelled state
+00:04 +109: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Expression exposes mode-aware actions and Natural output
+00:04 +110: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Expression exposes mode-aware actions and Natural output
+00:04 +111: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Expression exposes mode-aware actions and Natural output
+00:04 +112: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_test.dart: T-07R Mode Dropdown tracks effective mode and submitted mode
+00:04 +113: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Expression consent attaches Natural output only
+00:04 +114: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_test.dart: T-07R Feedback state resets at a new RequestId boundary
+00:04 +115: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_test.dart: T-07R Feedback state resets at a new RequestId boundary
+00:05 +116: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_test.dart: T-07R Feedback state resets at a new RequestId boundary
+00:05 +117: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Reading session actions remain operable
+00:05 +118: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Reading long output scrolls to Nuance at desktop widths
+00:05 +119: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Reading narrow viewport wraps without horizontal overflow
+00:05 +120: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Expression long output scrolls to Tone at desktop widths
+00:05 +121: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Expression narrow viewport wraps without horizontal overflow
+00:05 +122: D:/GitHub/workspace/lingolens-t11r-verify-RmAKDD/test/widget_reading_mode_test.dart: Expression regression excludes Reading sections
+00:05 +123: All tests passed!

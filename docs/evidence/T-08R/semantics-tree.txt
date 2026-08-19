@@ -1,0 +1,57 @@
+T-08R Semantics Contract Evidence
+
+Artifact type: deterministic semantics contract evidence
+Source tests: test/widget_reading_mode_test.dart
+Runtime dump: NOT_USED
+Runtime dump limitation: Flutter test backend dump harness hung and produced no valid artifact; this file is derived only from passing assertions and is not a fabricated raw runtime tree.
+
+Reading mode expected and verified contract:
+
+- key reading-quick-actions: count 1
+- key reading-session-actions: count 1
+- key expression-quick-actions: count 0
+- key expression-session-actions: count 0
+- semantics Reading quick actions: count 1
+- semantics Reading session actions: count 1
+- semantics Expression quick actions: count 0
+- semantics Expression session actions: count 0
+- semantics 複製主要翻譯: count 1
+- semantics 朗讀主要翻譯（Fake）: count 1
+- body Translation: FAKE TRANSLATION: reading hierarchy: count 1
+- ordered visible text: Translation -> Copy -> Listen（Fake） -> Sentence analysis -> Grammar -> Vocabulary -> Nuance
+
+Expression mode expected and verified contract:
+
+- key expression-quick-actions: count 1
+- key expression-session-actions: count 1
+- key reading-quick-actions: count 0
+- key reading-session-actions: count 0
+- semantics Expression quick actions: count 1
+- semantics Expression session actions: count 1
+- semantics Reading quick actions: count 0
+- semantics Reading session actions: count 0
+- semantics 複製 Natural 結果: count 1
+- semantics 朗讀 Natural 結果（Fake）: count 1
+- body Natural: FAKE NATURAL: expression actions: count 1
+- ordered visible text: Natural -> Copy -> Listen（Fake） -> Polite
+- Reading sections and Reading action identities: absent
+
+Mode switching expected and verified contract:
+
+- after Reading then Expression, stale reading-quick-actions: count 0
+- after Reading then Expression, stale reading-session-actions: count 0
+- after Reading then Expression, expression-quick-actions: count 1
+- after Reading then Expression, expression-session-actions: count 1
+
+Result content semantics:
+
+- each reusable result section body provides one explicit label in the form `<section label>: <text>`;
+- the selectable child uses `excludeSemantics: true` to avoid duplicate nested body semantics;
+- action containers retain mode-aware labels and stable keys.
+
+Verification command:
+
+- `flutter test test/widget_reading_mode_test.dart test/widget_test.dart`
+- Working directory: `D:\GitHub\workspace\lingolens-audit-t08r`
+- Exit code: `0`
+- Result: PASS; `16 tests passed`

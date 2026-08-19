@@ -1,0 +1,84 @@
+Task: T-03 Code-Level Capability Audit
+Working directories: `D:\GitHub\temp\Prototype`, `D:\GitHub\temp\Merged Model 1`, `D:\GitHub\temp\Merged Model 2`
+Result: PASS for bounded discovery; findings are recorded separately.
+
+## Command A: credential-pattern scan
+
+Command:
+```bash
+git grep -n -I -E 'AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9_]+|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|password[[:space:]]*[:=]|api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]' -- . ':(exclude)**/*.lock'
+```
+
+| Source | Start | End | Exit code | stdout | stderr |
+|---|---|---|---:|---|---|
+| Prototype | `2026-07-27T01:08:44+08:00` | `2026-07-27T01:08:45+08:00` | 1 | empty | empty |
+| Merged Model 1 | `2026-07-27T01:08:50+08:00` | `2026-07-27T01:08:50+08:00` | 1 | empty | empty |
+| Merged Model 2 | `2026-07-27T01:08:54+08:00` | `2026-07-27T01:08:54+08:00` | 1 | empty | empty |
+
+Exit code `1` means `git grep` found no match and is expected for this bounded scan.
+
+## Command B: credential-pattern history scan
+
+Command:
+```bash
+git log --all --oneline -G 'AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9_]+|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY' -- .
+```
+
+All three sources returned exit code `0`, empty stdout, empty stderr.
+
+## Command C: license and notice file inventory
+
+Command:
+```bash
+find . -maxdepth 4 -type f \( -iname 'license' -o -iname 'license.*' -o -iname 'copying*' -o -iname 'notice*' \) -print
+```
+
+All three source Repository searches returned exit code `0`, empty stdout, empty stderr. Build-generated `NOTICES.Z` was observed only in disposable build output for Merged Model 1 and Merged Model 2; it is not a tracked repository license file.
+
+## Command D: process／clipboard／logging surface scan
+
+Command:
+```bash
+git grep -n -I -E 'Process\.(start|run)|runInShell|powershell|osascript|Clipboard|debugPrint\(.*text|print\(.*text|stdout|stderr' -- . ':(exclude)**/*.lock'
+```
+
+All three commands returned exit code `0`, empty stderr. Decision-relevant complete matches:
+
+```text
+Merged Model 1
+FlutterVersion/lib/lingolens_services.dart:323:      final res = await Process.run(cmd, ['codex'], runInShell: true);
+FlutterVersion/lib/lingolens_services.dart:349:      final process = await Process.start(
+FlutterVersion/lib/lingolens_services.dart:360:        runInShell: true,
+FlutterVersion/lib/lingolens_services.dart:391:    final oldClipboardData = await Clipboard.getData(Clipboard.kTextPlain);
+FlutterVersion/lib/lingolens_services.dart:397:      await Process.run('osascript', ['-e', 'tell application "System Events" to keystroke "c" using command down']);
+FlutterVersion/lib/lingolens_services.dart:399:      await Process.run('powershell', ['-c', r'''Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait('^c')''']);
+FlutterVersion/lib/lingolens_services.dart:438:        _process = await Process.start('say', [text]);
+FlutterVersion/lib/lingolens_services.dart:442:        _process = await Process.start('powershell', [
+FlutterVersion/lib/main.dart:152:            print("⚡ Clipboard Monitor: Detected new text => $text");
+FlutterVersion/lib/main.dart:164:      Process.run('powershell', ['-c', r'$wshell = New-Object -ComObject WScript.Shell; $wshell.AppActivate("LingoLens"); $wshell.AppActivate("lingo_lens")']);
+FlutterVersion/lib/main.dart:166:      Process.run('osascript', ['-e', 'tell application "lingo_lens" to activate']);
+
+Merged Model 2
+lib/services/codex_analysis_service.dart:105:      process = await Process.start(
+lib/services/codex_analysis_service.dart:124:        debugPrint('>>> [Codex CLI stdout] $data');
+lib/services/codex_analysis_service.dart:133:        debugPrint('>>> [Codex CLI stderr] $data');
+lib/services/codex_analysis_service.dart:263:    debugPrint('>>> [CodexAnalysisService] Starting live CLI analysis for text: $text');
+lib/services/codex_analysis_service.dart:315:        debugPrint('>>> Codex process failed with exit code ${result.exitCode}: ${result.stderr}');
+lib/services/selected_text_service.dart:24:class ClipboardSelectedTextReader implements SelectedTextReading {
+lib/services/speech_service.dart:72:      final process = await Process.start('powershell', ['-Command', psCommand]);
+```
+
+Prototype matched clipboard／process references and extensive tests／design documents, but no raw user-text logging match was found in the bounded application scan.
+
+## Command E: Codebase Memory discovery
+
+Commands:
+```text
+mcp__codebase_memory_mcp__index_repository(mode=full, persistence=true, repo_path=<disposable clone>)
+mcp__codebase_memory_mcp__get_architecture(aspects=[all], project=<indexed project>)
+mcp__codebase_memory_mcp__search_graph(...)
+mcp__codebase_memory_mcp__get_code_snippet(...)
+mcp__codebase_memory_mcp__search_code(...)
+```
+
+Result: three disposable clones indexed successfully. Project names, node／edge counts and symbol paths are recorded in `source-heads.txt` and `symbol-index.md`. No index command targeted the official Repository or `D:\GitHub\temp` source Repository.

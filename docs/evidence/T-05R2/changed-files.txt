@@ -1,0 +1,29 @@
+# T-05R2 Changed Files
+
+## Policy and Tests
+
+- `lib/application/persistence_controller.dart`
+- `test/application/persistence_controller_test.dart`
+
+## Governance
+
+- `AGENTS.md`
+- `agent_tasks.md`
+- `docs/ARCHITECTURE.md`
+- `docs/quality/T-04_RISK_REGISTER.md`
+- `handoff.md`
+
+## T-05R2 Evidence
+
+- `docs/evidence/T-05R2/preflight.md`
+- `docs/evidence/T-05R2/implementation-summary.md`
+- `docs/evidence/T-05R2/test-results.md`
+- `docs/evidence/T-05R2/verification-results.md`
+- `docs/evidence/T-05R2/build-results.md`
+- `docs/evidence/T-05R2/changed-files.txt`
+- `docs/evidence/T-05R2/git-delivery.md`
+- `docs/evidence/T-05R2/limitations.md`
+
+No dependency, UI, platform, repository interface, Archived Handoff or T-06 file is in scope.
+
+Authoritative final receipt：`git diff --name-status 052ca2534b9809f99b8f4b3413a2b189a51c113f...HEAD -- .`。

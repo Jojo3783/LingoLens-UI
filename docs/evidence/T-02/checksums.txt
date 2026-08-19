@@ -1,0 +1,31 @@
+Task: T-02 Disposable Source Baseline
+Algorithm: SHA-256
+
+Source HEADs
+Prototype: 40e8d70e8e9bf336a2f66cf811736061831c2964
+Merged Model 1: 76a3826ce69827456b7c305018b629f1c22f4bd6
+Merged Model 2: df4f5424e8abfedc52f941c8c5c2f1a9463e8aac
+
+Manifest and lockfile checksums
+05fb655a7fec71b2fd7b771c7a48cf1136ec604fd1f2c8e5751c6fe4749f4837  D:\GitHub\temp\Merged Model 1\FlutterVersion\pubspec.yaml
+bff8f33877ac8b129da31eced678c6e30b316f24834092319311a2ba87fa3e73  D:\GitHub\temp\Merged Model 1\FlutterVersion\pubspec.lock
+3cb1ce59f772474b93f24f4813988ba1ee6c6815301970e44ac24f9bacbeb39f  D:\GitHub\temp\Merged Model 2\pubspec.yaml
+78105bea6245da0ec442ffa37552d6736a29e5876bed59541539f7a7bf3cab82  D:\GitHub\temp\Merged Model 2\pubspec.lock
+
+Clone manifest 與 lockfile hashes 在 baseline execution 前，與對應來源檔案 byte-for-byte 相同。
+
+Generated disposable artifacts
+- Merged Model 1: `FlutterVersion/flutter_01.log`, `.dart_tool/`, `build/`, and regenerated Flutter plugin registrant files.
+- Merged Model 2: `flutter_01.log`, `.dart_tool/`, `build/`, and regenerated Flutter plugin registrant files.
+- 這些 artifacts 保留在官方 Repository 之外，且不會 Commit。
+
+Evidence file hashes 會在最終文件集合完成後計算，並記錄於最終交付報告。
+
+目前 evidence file SHA-256 snapshot
+f57a140e79d569ee004bd34b1adf67ca8d10f10fa7b6317c3b059d7bb71b2c50  docs/integration/SOURCE_BASELINES.md
+e6c5aa18f7f13757f3b263cd382ce351fdefc7751664b82cdcb27e8f9893828b  docs/integration/BUILD_AND_TEST_REPORT.md
+9b197d1c83f0d905adde45dbbcea5653adbee2d4b69aa68b5d4f87beea10b803  docs/evidence/T-02/environment.txt
+e428a03fde98c93711679422f675f9c71ca5fed244c647ef02725d1c6640a998  docs/evidence/T-02/metadata.txt
+89fe7375c80b9910271300155bda2a72cee4a6e69633e4b5f2b222a037a2e0cd  docs/evidence/T-02/command-results.md
+
+Note: `checksums.txt` intentionally does not include its own SHA-256 because a self-reference would change the file hash.

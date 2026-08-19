@@ -1,0 +1,13 @@
+docs/ARCHITECTURE.md
+docs/decisions/ADR-002-state-management.md
+docs/decisions/ADR-003-persistence-boundary.md
+docs/decisions/ADR-004-provider-boundary.md
+docs/decisions/ADR-005-progressive-results.md
+docs/decisions/ADR-007-platform-boundary.md
+docs/quality/T-04_RISK_REGISTER.md
+handoff.md
+docs/evidence/T-04R/preflight.md
+docs/evidence/T-04R/architecture-corrections.md
+docs/evidence/T-04R/changed-files.txt
+docs/evidence/T-04R/verification.md
+docs/evidence/T-04R/git-delivery.md
