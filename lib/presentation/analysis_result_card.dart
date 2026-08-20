@@ -192,6 +192,33 @@ final class _ResultSection extends StatelessWidget {
   final String text;
   final bool isPrimary;
 
+  IconData _iconForLabel(String label) {
+    switch (label) {
+      case 'Translation':
+        return Icons.translate_rounded;
+      case 'Natural':
+        return Icons.chat_bubble_outline_rounded;
+      case 'Sentence analysis':
+        return Icons.account_tree_outlined;
+      case 'Grammar':
+        return Icons.rule_rounded;
+      case 'Vocabulary':
+        return Icons.menu_book_outlined;
+      case 'Nuance':
+        return Icons.psychology_alt_outlined;
+      case 'Polite':
+        return Icons.sentiment_satisfied_alt_rounded;
+      case 'Formal':
+        return Icons.business_center_outlined;
+      case 'Context':
+        return Icons.place_outlined;
+      case 'Tone':
+        return Icons.record_voice_over_outlined;
+      default:
+        return Icons.info_outline_rounded;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -199,11 +226,13 @@ final class _ResultSection extends StatelessWidget {
 
     final containerColor = isPrimary
         ? colorScheme.primaryContainer.withValues(alpha: 0.75)
-        : colorScheme.surfaceContainerHighest.withValues(alpha: 0.45);
+        : colorScheme.surfaceContainerHighest.withValues(alpha: 0.4);
 
     final labelColor = isPrimary
         ? colorScheme.onPrimaryContainer
         : colorScheme.primary;
+
+    final sectionIcon = _iconForLabel(label);
 
     return Container(
       width: double.infinity,
@@ -213,8 +242,8 @@ final class _ResultSection extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isPrimary
-              ? colorScheme.primary.withValues(alpha: 0.35)
-              : colorScheme.outlineVariant.withValues(alpha: 0.6),
+              ? colorScheme.primary.withValues(alpha: 0.4)
+              : colorScheme.outlineVariant.withValues(alpha: 0.5),
         ),
       ),
       child: Column(
@@ -222,20 +251,31 @@ final class _ResultSection extends StatelessWidget {
         children: [
           Semantics(
             header: true,
-            child: Text(
-              label,
-              style: isPrimary
-                  ? theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: labelColor,
-                    )
-                  : theme.textTheme.labelLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: labelColor,
-                    ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  sectionIcon,
+                  size: isPrimary ? 18 : 15,
+                  color: labelColor,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  label,
+                  style: isPrimary
+                      ? theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: labelColor,
+                        )
+                      : theme.textTheme.labelLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: labelColor,
+                        ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 8),
           Semantics(
             container: true,
             excludeSemantics: true,
@@ -245,10 +285,10 @@ final class _ResultSection extends StatelessWidget {
               style: isPrimary
                   ? theme.textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w600,
-                      height: 1.4,
+                      height: 1.45,
                     )
                   : theme.textTheme.bodyMedium?.copyWith(
-                      height: 1.35,
+                      height: 1.4,
                     ),
             ),
           ),

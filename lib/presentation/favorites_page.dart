@@ -19,15 +19,18 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  late Future<List<HistoryRecord>> _historyFuture;
-  late Future<List<FavoriteRecord>> _favoritesFuture;
+  List<HistoryRecord>? _history;
+  Set<String>? _favoriteIds;
+  bool _isLoading = true;
+  String? _errorMessage;
+
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
   @override
   void initState() {
     super.initState();
-    _refresh();
+    _loadData();
   }
 
   @override
@@ -36,11 +39,59 @@ class _FavoritesPageState extends State<FavoritesPage> {
     super.dispose();
   }
 
-  void _refresh() {
+  Future<void> _loadData() async {
     setState(() {
-      _historyFuture = widget.persistence.visibleHistory(limit: 1000);
-      _favoritesFuture = widget.persistence.favorites();
+      _isLoading = true;
+      _errorMessage = null;
     });
+    try {
+      final results = await Future.wait([
+        widget.persistence.visibleHistory(limit: 1000),
+        widget.persistence.favorites(),
+      ]);
+      if (!mounted) return;
+      final history = List<HistoryRecord>.from(results[0] as List<HistoryRecord>);
+      final favorites = results[1] as List<FavoriteRecord>;
+      setState(() {
+        _history = history;
+        _favoriteIds = favorites.map((f) => f.historyRecordId).toSet();
+        _isLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _errorMessage = e.toString();
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _unfavorite(HistoryRecord record) async {
+    if (_favoriteIds == null) return;
+
+    setState(() {
+      _favoriteIds!.remove(record.id);
+    });
+
+    try {
+      await widget.persistence.setFavorite(
+        historyRecordId: record.id,
+        createdAt: DateTime.now(),
+        isFavorite: false,
+      );
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _favoriteIds!.add(record.id);
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('取消最愛失敗，請稍後再試。'),
+          backgroundColor: Theme.of(context).colorScheme.error,
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
   }
 
   Future<void> _confirmDelete(HistoryRecord record) async {
@@ -70,9 +121,14 @@ class _FavoritesPageState extends State<FavoritesPage> {
       ),
     );
     if (confirmed != true || !mounted) return;
+
     try {
       await widget.persistence.deleteHistory(record.id);
-      _refresh();
+      if (!mounted) return;
+      setState(() {
+        _history?.removeWhere((r) => r.id == record.id);
+        _favoriteIds?.remove(record.id);
+      });
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -84,7 +140,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
       );
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +169,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     IconButton.filledTonal(
                       tooltip: '重新整理',
                       icon: const Icon(Icons.refresh_rounded, size: 20),
-                      onPressed: _refresh,
+                      onPressed: _loadData,
                     ),
                   ],
                 ),
@@ -143,32 +198,26 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       setState(() => _searchQuery = val.trim().toLowerCase()),
                 ),
                 const SizedBox(height: 16),
-                FutureBuilder<List<Object>>(
-                  future: Future.wait([_historyFuture, _favoritesFuture]),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState != ConnectionState.done) {
-                      return const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(48),
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    }
-                    if (snapshot.hasError) {
-                      return LingoLensSurface(
-                        child: Text(
-                          '讀取最愛紀錄時發生錯誤：${snapshot.error}',
-                          style: TextStyle(
-                            color: colorScheme.error,
-                          ),
-                        ),
-                      );
-                    }
-                    final results = snapshot.data!;
-                    final history = results[0] as List<HistoryRecord>;
-                    final favorites = results[1] as List<FavoriteRecord>;
-                    final favoriteSet =
-                        favorites.map((f) => f.historyRecordId).toSet();
+                if (_isLoading)
+                  const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(48),
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                else if (_errorMessage != null)
+                  LingoLensSurface(
+                    child: Text(
+                      '讀取最愛紀錄時發生錯誤：$_errorMessage',
+                      style: TextStyle(
+                        color: colorScheme.error,
+                      ),
+                    ),
+                  )
+                else ...[
+                  () {
+                    final history = _history ?? <HistoryRecord>[];
+                    final favoriteSet = _favoriteIds ?? <String>{};
                     final favoriteRecords =
                         history.where((r) => favoriteSet.contains(r.id)).toList();
 
@@ -265,21 +314,14 @@ class _FavoritesPageState extends State<FavoritesPage> {
                             child: HistoryRecordTile(
                               record: record,
                               isFavorite: true,
-                              onToggleFavorite: () async {
-                                await widget.persistence.setFavorite(
-                                  historyRecordId: record.id,
-                                  createdAt: DateTime.now(),
-                                  isFavorite: false,
-                                );
-                                _refresh();
-                              },
+                              onToggleFavorite: () => _unfavorite(record),
                               onDelete: () => _confirmDelete(record),
                             ),
                           ),
                       ],
                     );
-                  },
-                ),
+                  }(),
+                ],
               ],
             ),
           ),

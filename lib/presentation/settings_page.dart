@@ -177,6 +177,20 @@ class _SettingsPageState extends State<SettingsPage> {
                         },
                       ),
                       const Divider(height: 24),
+                      Text(
+                        '快取管理 (Analysis Cache)',
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        '快取用於加速相同條件下的查詢。清除快取只會釋放暫存，完全不會影響您的歷史紀錄與最愛收藏。',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
                       Row(
                         children: [
                           Expanded(
@@ -187,7 +201,10 @@ class _SettingsPageState extends State<SettingsPage> {
                                 await widget.persistence?.clearCache();
                                 if (context.mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('已清除快取紀錄')),
+                                    const SnackBar(
+                                      content: Text('已清除快取紀錄（歷史與最愛依然保留）'),
+                                      behavior: SnackBarBehavior.floating,
+                                    ),
                                   );
                                 }
                               },

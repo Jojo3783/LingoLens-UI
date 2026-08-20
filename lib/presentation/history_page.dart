@@ -19,15 +19,18 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
-  late Future<List<HistoryRecord>> _historyFuture;
-  late Future<List<FavoriteRecord>> _favoritesFuture;
+  List<HistoryRecord>? _history;
+  Set<String>? _favoriteIds;
+  bool _isLoading = true;
+  String? _errorMessage;
+
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
   @override
   void initState() {
     super.initState();
-    _refresh();
+    _loadData();
   }
 
   @override
@@ -36,11 +39,69 @@ class _HistoryPageState extends State<HistoryPage> {
     super.dispose();
   }
 
-  void _refresh() {
+  Future<void> _loadData() async {
     setState(() {
-      _historyFuture = widget.persistence.visibleHistory();
-      _favoritesFuture = widget.persistence.favorites();
+      _isLoading = true;
+      _errorMessage = null;
     });
+    try {
+      final results = await Future.wait([
+        widget.persistence.visibleHistory(),
+        widget.persistence.favorites(),
+      ]);
+      if (!mounted) return;
+      final history = List<HistoryRecord>.from(results[0] as List<HistoryRecord>);
+      final favorites = results[1] as List<FavoriteRecord>;
+      setState(() {
+        _history = history;
+        _favoriteIds = favorites.map((f) => f.historyRecordId).toSet();
+        _isLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _errorMessage = e.toString();
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _toggleFavorite(HistoryRecord record) async {
+    if (_favoriteIds == null) return;
+    final isCurrentlyFav = _favoriteIds!.contains(record.id);
+    final nextFav = !isCurrentlyFav;
+
+    setState(() {
+      if (nextFav) {
+        _favoriteIds!.add(record.id);
+      } else {
+        _favoriteIds!.remove(record.id);
+      }
+    });
+
+    try {
+      await widget.persistence.setFavorite(
+        historyRecordId: record.id,
+        createdAt: DateTime.now(),
+        isFavorite: nextFav,
+      );
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        if (isCurrentlyFav) {
+          _favoriteIds!.add(record.id);
+        } else {
+          _favoriteIds!.remove(record.id);
+        }
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('收藏操作失敗，請稍後再試。'),
+          backgroundColor: Theme.of(context).colorScheme.error,
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
   }
 
   Future<void> _confirmDelete({
@@ -75,9 +136,14 @@ class _HistoryPageState extends State<HistoryPage> {
       ),
     );
     if (confirmed != true || !mounted) return;
+
     try {
       await widget.persistence.deleteHistory(record.id);
-      _refresh();
+      if (!mounted) return;
+      setState(() {
+        _history?.removeWhere((r) => r.id == record.id);
+        _favoriteIds?.remove(record.id);
+      });
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -89,7 +155,6 @@ class _HistoryPageState extends State<HistoryPage> {
       );
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +184,7 @@ class _HistoryPageState extends State<HistoryPage> {
                     IconButton.filledTonal(
                       tooltip: '重新整理',
                       icon: const Icon(Icons.refresh_rounded, size: 20),
-                      onPressed: _refresh,
+                      onPressed: _loadData,
                     ),
                   ],
                 ),
@@ -148,76 +213,67 @@ class _HistoryPageState extends State<HistoryPage> {
                       setState(() => _searchQuery = val.trim().toLowerCase()),
                 ),
                 const SizedBox(height: 16),
-                FutureBuilder<List<Object>>(
-                  future: Future.wait([_historyFuture, _favoritesFuture]),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState != ConnectionState.done) {
-                      return const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(48),
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    }
-                    if (snapshot.hasError) {
-                      return LingoLensSurface(
-                        child: Text(
-                          '讀取歷史紀錄時發生錯誤：${snapshot.error}',
-                          style: TextStyle(
-                            color: colorScheme.error,
-                          ),
-                        ),
-                      );
-                    }
-                    final results = snapshot.data!;
-                    final history = results[0] as List<HistoryRecord>;
-                    final favorites = results[1] as List<FavoriteRecord>;
-                    final favoriteSet =
-                        favorites.map((f) => f.historyRecordId).toSet();
-
-                    if (history.isEmpty) {
-                      return LingoLensSurface(
-                        child: Padding(
-                          padding: const EdgeInsets.all(32),
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(16),
-                                  decoration: BoxDecoration(
-                                    color: colorScheme.surfaceContainerHighest
-                                        .withValues(alpha: 0.5),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    Icons.history_rounded,
-                                    size: 36,
-                                    color: colorScheme.onSurfaceVariant,
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  '目前沒有歷史紀錄',
-                                  style: theme.textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  '在分析工作台進行文字分析後，查詢結果將會自動記錄於此。',
-                                  textAlign: TextAlign.center,
-                                  style: theme.textTheme.bodySmall?.copyWith(
-                                    color: colorScheme.onSurfaceVariant,
-                                  ),
-                                ),
-                              ],
+                if (_isLoading)
+                  const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(48),
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                else if (_errorMessage != null)
+                  LingoLensSurface(
+                    child: Text(
+                      '讀取歷史紀錄時發生錯誤：$_errorMessage',
+                      style: TextStyle(
+                        color: colorScheme.error,
+                      ),
+                    ),
+                  )
+                else if (_history == null || _history!.isEmpty)
+                  LingoLensSurface(
+                    child: Padding(
+                      padding: const EdgeInsets.all(32),
+                      child: Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: colorScheme.surfaceContainerHighest
+                                    .withValues(alpha: 0.5),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.history_rounded,
+                                size: 36,
+                                color: colorScheme.onSurfaceVariant,
+                              ),
                             ),
-                          ),
+                            const SizedBox(height: 16),
+                            Text(
+                              '目前沒有歷史紀錄',
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              '在分析工作台進行文字分析後，查詢結果將會自動記錄於此。',
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
                         ),
-                      );
-                    }
-
+                      ),
+                    ),
+                  )
+                else ...[
+                  () {
+                    final history = _history!;
+                    final favoriteSet = _favoriteIds ?? <String>{};
                     final filteredHistory = _searchQuery.isEmpty
                         ? history
                         : history.where((r) {
@@ -268,16 +324,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             child: HistoryRecordTile(
                               record: record,
                               isFavorite: favoriteSet.contains(record.id),
-                               onToggleFavorite: () async {
-                                final nextState =
-                                    !favoriteSet.contains(record.id);
-                                await widget.persistence.setFavorite(
-                                  historyRecordId: record.id,
-                                  createdAt: DateTime.now(),
-                                  isFavorite: nextState,
-                                );
-                                _refresh();
-                              },
+                              onToggleFavorite: () => _toggleFavorite(record),
                               onDelete: () => _confirmDelete(
                                 record: record,
                                 isFavorite: favoriteSet.contains(record.id),
@@ -286,8 +333,8 @@ class _HistoryPageState extends State<HistoryPage> {
                           ),
                       ],
                     );
-                  },
-                ),
+                  }(),
+                ],
               ],
             ),
           ),
