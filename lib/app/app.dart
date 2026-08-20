@@ -12,7 +12,6 @@ import '../application/windows_capture_controller.dart';
 import '../domain/provider_contracts.dart';
 import '../infrastructure/fake_speech_adapter.dart';
 import '../infrastructure/flutter_clipboard_writer.dart';
-import '../infrastructure/in_memory_persistence.dart';
 import '../infrastructure/local_file_persistence.dart';
 import '../infrastructure/openai/secure_credential_store.dart';
 import '../infrastructure/windows/windows_platform_services.dart';

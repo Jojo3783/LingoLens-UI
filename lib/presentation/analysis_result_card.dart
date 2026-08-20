@@ -28,6 +28,13 @@ final class AnalysisResultCard extends StatelessWidget {
       label: '${isReading ? 'Reading' : 'Expression'} result',
       child: Card(
         key: ValueKey(isReading ? 'reading-result' : 'expression-result'),
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: 0.5),
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: SelectionArea(
@@ -84,6 +91,7 @@ final class AnalysisResultCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
 
+                // ==================== LAYER 1: 即時直接答案 ====================
                 if (isReading) ...[
                   _ResultSection(
                     key: const ValueKey('reading-translation'),
@@ -99,6 +107,7 @@ final class AnalysisResultCard extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 12),
+                  // ==================== LAYER 2: 核心學習重點 ====================
                   _ResultSection(
                     key: const ValueKey('reading-sentence-analysis'),
                     label: 'Sentence analysis',
@@ -117,6 +126,7 @@ final class AnalysisResultCard extends StatelessWidget {
                     text: success.result.reading.vocabulary,
                   ),
                   const SizedBox(height: 12),
+                  // ==================== LAYER 3: 深入細微解析 ====================
                   _ResultSection(
                     key: const ValueKey('reading-nuance'),
                     label: 'Nuance',
@@ -188,8 +198,8 @@ final class _ResultSection extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     final containerColor = isPrimary
-        ? colorScheme.primaryContainer.withValues(alpha: 0.7)
-        : colorScheme.surfaceContainerHighest.withValues(alpha: 0.5);
+        ? colorScheme.primaryContainer.withValues(alpha: 0.75)
+        : colorScheme.surfaceContainerHighest.withValues(alpha: 0.45);
 
     final labelColor = isPrimary
         ? colorScheme.onPrimaryContainer
@@ -197,14 +207,14 @@ final class _ResultSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: containerColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isPrimary
-              ? colorScheme.primary.withValues(alpha: 0.3)
-              : colorScheme.outlineVariant,
+              ? colorScheme.primary.withValues(alpha: 0.35)
+              : colorScheme.outlineVariant.withValues(alpha: 0.6),
         ),
       ),
       child: Column(
@@ -234,9 +244,12 @@ final class _ResultSection extends StatelessWidget {
               text,
               style: isPrimary
                   ? theme.textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
+                      height: 1.4,
                     )
-                  : theme.textTheme.bodyMedium,
+                  : theme.textTheme.bodyMedium?.copyWith(
+                      height: 1.35,
+                    ),
             ),
           ),
         ],
@@ -244,3 +257,4 @@ final class _ResultSection extends StatelessWidget {
     );
   }
 }
+
