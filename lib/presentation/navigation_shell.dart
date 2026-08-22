@@ -8,6 +8,7 @@ import '../domain/provider_contracts.dart';
 import 'analysis_page.dart';
 import 'favorites_page.dart';
 import 'history_page.dart';
+import 'review_page.dart';
 import 'settings_page.dart';
 
 class LingoLensNavigationShell extends StatefulWidget {
@@ -68,6 +69,11 @@ class _LingoLensNavigationShellState extends State<LingoLensNavigationShell> {
         label: '最愛',
       ),
       const _Destination(
+        icon: Icons.psychology_outlined,
+        selectedIcon: Icons.psychology_rounded,
+        label: '複習',
+      ),
+      const _Destination(
         icon: Icons.settings_outlined,
         selectedIcon: Icons.settings_rounded,
         label: '設定',
@@ -96,6 +102,11 @@ class _LingoLensNavigationShellState extends State<LingoLensNavigationShell> {
             : const Center(child: Text('最愛紀錄服務未提供'));
         headerTitle = '最愛紀錄';
       case 3:
+        content = widget.persistence != null
+            ? ReviewPage(persistence: widget.persistence!)
+            : const Center(child: Text('複習服務未提供'));
+        headerTitle = '回想複習';
+      case 4:
       default:
         content = SettingsPage(
           selectedProvider: widget.selectedProvider,

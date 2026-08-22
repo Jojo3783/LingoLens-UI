@@ -93,6 +93,32 @@ final class PersistenceController {
   Future<List<FavoriteRecord>> favorites() =>
       _mapPersistenceFailure(_favorites.listAll);
 
+  Future<List<HistoryRecord>> reviewCandidates({
+    DateTime? now,
+    int days = 10,
+    int maxCount = 5,
+  }) async {
+    final referenceTime = now ?? DateTime.now();
+    final threshold = referenceTime.subtract(Duration(days: days));
+    final favList = await _mapPersistenceFailure(_favorites.listAll);
+    final validFavs = favList
+        .where(
+          (f) =>
+              f.createdAt.isAfter(threshold) ||
+              f.createdAt.isAtSameMomentAs(threshold),
+        )
+        .toList();
+    if (validFavs.isEmpty) {
+      return const <HistoryRecord>[];
+    }
+    final favIds = validFavs.map((f) => f.historyRecordId).toSet();
+    final allRecords = await _mapPersistenceFailure(_history.listAll);
+    final candidateRecords =
+        allRecords.where((r) => favIds.contains(r.id)).toList()
+          ..sort(_compareHistoryRecords);
+    return List<HistoryRecord>.unmodifiable(candidateRecords.take(maxCount));
+  }
+
   Future<void> submitFeedback({
     required String id,
     required FeedbackReason reason,
