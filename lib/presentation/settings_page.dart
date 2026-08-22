@@ -34,6 +34,48 @@ class _SettingsPageState extends State<SettingsPage> {
   final TextEditingController _apiKeyController = TextEditingController();
   bool _obscureApiKey = true;
   bool _historyWritesEnabled = true;
+  bool _cacheEnabled = true;
+
+  Future<void> _confirmClearCache() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        key: const ValueKey('clear-cache-dialog'),
+        title: const Text('確認清除快取'),
+        content: const Text(
+          '確定要清除分析快取嗎？\n\n此操作僅會釋放本機暫存空間以重新發起查詢，您的「歷史紀錄」與「最愛收藏」完全不會受到影響。',
+        ),
+        actions: [
+          TextButton(
+            key: const ValueKey('clear-cache-cancel-btn'),
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('取消'),
+          ),
+          FilledButton(
+            key: const ValueKey('clear-cache-confirm-btn'),
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('確認清除'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !mounted) return;
+
+    await widget.persistence?.clearCache();
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        key: ValueKey('clear-cache-snackbar'),
+        content: Text('已清除快取紀錄（歷史與最愛依然保留）'),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -168,12 +210,24 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                       const SizedBox(height: 12),
                       SwitchListTile(
+                        key: const ValueKey('history-writes-switch'),
                         title: const Text('紀錄寫入歷史 (History Writes)'),
                         subtitle: const Text('關閉後新的分析結果將不會寫入歷史紀錄。'),
                         value: _historyWritesEnabled,
                         onChanged: (enabled) async {
                           setState(() => _historyWritesEnabled = enabled);
                           await widget.persistence?.setHistoryWritesEnabled(enabled);
+                        },
+                      ),
+                      SwitchListTile(
+                        key: const ValueKey('analysis-cache-switch'),
+                        title: const Text('啟用分析快取 (Enable Analysis Cache)'),
+                        subtitle: const Text(
+                          '安全重用相同輸入的分析結果；關閉後每次皆重新發起 AI 查詢。',
+                        ),
+                        value: _cacheEnabled,
+                        onChanged: (enabled) {
+                          setState(() => _cacheEnabled = enabled);
                         },
                       ),
                       const Divider(height: 24),
@@ -185,7 +239,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '快取用於加速相同條件下的查詢。清除快取只會釋放暫存，完全不會影響您的歷史紀錄與最愛收藏。',
+                        '快取用於加速相同條件下的查詢（容量上限 100 筆，採 FIFO 自動淘汰）。清除快取只會釋放暫存，完全不會影響您的歷史紀錄與最愛收藏。',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: colorScheme.onSurfaceVariant,
                         ),
@@ -195,19 +249,10 @@ class _SettingsPageState extends State<SettingsPage> {
                         children: [
                           Expanded(
                             child: OutlinedButton.icon(
+                              key: const ValueKey('clear-cache-btn'),
                               icon: const Icon(Icons.cleaning_services_outlined),
                               label: const Text('清除快取 (Clear Cache)'),
-                              onPressed: () async {
-                                await widget.persistence?.clearCache();
-                                if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('已清除快取紀錄（歷史與最愛依然保留）'),
-                                      behavior: SnackBarBehavior.floating,
-                                    ),
-                                  );
-                                }
-                              },
+                              onPressed: _confirmClearCache,
                             ),
                           ),
                         ],
